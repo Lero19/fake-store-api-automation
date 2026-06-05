@@ -1,0 +1,14 @@
+# Use official Maven + Java image
+FROM maven:3.9.6-eclipse-temurin-17
+  
+  # Set working directory inside container
+WORKDIR /app
+  
+  # Copy project files
+COPY . .
+  
+  # Run tests
+RUN mvn clean test
+  
+  # Default command (optional)
+CMD ["mvn", "test"]
