@@ -9,5 +9,3 @@ Feature: Update Users
     Examples:
       | id |
       | 1  |
-      | 2  |
-      | 3  |

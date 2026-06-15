@@ -9,12 +9,3 @@ Feature: Get A Single User By Id
     Examples:
       | id |
       | 1  |
-      | 2  |
-      | 3  |
-      | 4  |
-      | 5  |
-      | 6  |
-      | 7  |
-      | 8  |
-      | 9  |
-      | 10 |

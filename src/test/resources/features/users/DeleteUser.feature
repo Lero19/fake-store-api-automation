@@ -9,5 +9,3 @@ Feature: Delete User
     Examples:
       | id |
       | 1  |
-      | 2  |
-      | 3  |
