@@ -44,4 +44,13 @@ public class UserSteps {
     public void verifyUserCreated() {
         validator.verifyUserCreated(context.getResponse());
     }
+    @When("I request user with id {int}")
+    public void getUserById(int id) {
+        context.setResponse(userService.getUserById(id));
+    }
+
+    @Then("response should contain user with id {int}")
+    public void verifySingleUser(int id) {
+        validator.verifySingleUser(context.getResponse(), id);
+    }
 }

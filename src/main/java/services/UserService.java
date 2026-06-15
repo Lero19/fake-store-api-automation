@@ -14,9 +14,10 @@ public class UserService {
 
     public Response createUser(String username, String email, String password) {
 
-        CreateUserRequest request =
-                new CreateUserRequest(username, email, password);
-
+        CreateUserRequest request = new CreateUserRequest(username, email, password);
         return userClient.createUser(request);
+    }
+    public Response getUserById(int id) {
+        return userClient.getUserById(id);
     }
 }

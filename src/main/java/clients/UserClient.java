@@ -18,4 +18,11 @@ public class UserClient extends BaseApiClient {
                 .when()
                 .post("/users");
     }
+    public Response getUserById(int id) {
+
+        return requestSpec()
+                .pathParam("id", id)
+                .when()
+                .get("/users/{id}");
+    }
 }
