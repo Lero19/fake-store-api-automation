@@ -48,5 +48,8 @@ public class UserValidator {
         Assertions.assertThat(response.statusCode()).isEqualTo(200);
         Assertions.assertThat(response.time()).isLessThan(3000);
     }
-
+    public void verifyErrorResponse(Response response) {
+        Assertions.assertThat(response.statusCode()).isIn(400, 401, 404);
+        Assertions.assertThat(response.asString()).isNotEmpty();
+    }
 }

@@ -1,5 +1,5 @@
 @Regression
-Feature: Get A Single User By Id
+Feature: User Management
 
   Scenario Outline: Get a single user by id
     When I request user with id <id>

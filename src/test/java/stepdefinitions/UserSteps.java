@@ -80,4 +80,8 @@ public class UserSteps {
     public void verifyUserDeleted() {
         validator.verifyUserDeleted(context.getResponse());
     }
+    @When("I request user with invalid id")
+    public void getUserInvalid() {
+        context.setResponse(userService.getUserById(9999));
+    }
 }

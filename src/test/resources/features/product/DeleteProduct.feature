@@ -1,5 +1,5 @@
 @Regression
-  Feature: Delete Product
+  Feature: Product Management
     Scenario Outline: Delete product
       When I delete product with id <id>
       Then response status should be 200

@@ -1,6 +1,6 @@
 @Regression
 
-Feature: Create Users
+Feature: User Management
 
   Scenario: Create a new user
     When I create a new user

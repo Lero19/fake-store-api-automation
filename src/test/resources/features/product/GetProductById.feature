@@ -1,5 +1,5 @@
 @Regression
-  Feature: Get Product by Id
+  Feature: Product Management
     Scenario Outline: Get product by id
       When I request product with id <id>
       Then response status should be 200

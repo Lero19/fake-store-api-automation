@@ -1,5 +1,5 @@
 @Regression
-  Feature: Get All Products
+  Feature: Product Management
 
     Scenario: Get all products
     When I request all products

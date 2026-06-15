@@ -1,5 +1,5 @@
 @Regression
-  Feature: Update Product Details
+  Feature: Product Management
     Scenario Outline: Update product
       When I update product with id <id>
       Then response status should be 200

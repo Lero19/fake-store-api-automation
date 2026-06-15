@@ -1,4 +1,4 @@
-Feature: Get All Users
+Feature: User Management
 
   @Regression
   Scenario: Get all users successfully

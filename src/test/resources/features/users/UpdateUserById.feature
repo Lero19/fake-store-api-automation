@@ -1,5 +1,5 @@
 @Regression
-Feature: Update Users
+Feature: User Management
 
   Scenario Outline: Update user by id
     When I update user with id <id>

@@ -1,5 +1,5 @@
 @Regression
-Feature: Delete User
+Feature: User Management
 
   Scenario Outline: Delete user by id
     When I delete user with id <id>
