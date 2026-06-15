@@ -1,22 +1,22 @@
 package services;
 
+import clients.UserClient;
 import io.restassured.response.Response;
-
-import static io.restassured.RestAssured.given;
+import models.request.CreateUserRequest;
 
 public class UserService {
 
-    private static final String BASE_URL = "https://fakestoreapi.com";
+    private final UserClient userClient = new UserClient();
 
     public Response getAllUsers() {
+        return userClient.getAllUsers();
+    }
 
-        return given()
-                .baseUri(BASE_URL)
-                .header("Content-Type", "application/json")
-                .when()
-                .get("/users")
-                .then()
-                .extract()
-                .response();
+    public Response createUser(String username, String email, String password) {
+
+        CreateUserRequest request =
+                new CreateUserRequest(username, email, password);
+
+        return userClient.createUser(request);
     }
 }

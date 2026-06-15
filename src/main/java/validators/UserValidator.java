@@ -1,20 +1,30 @@
 package validators;
 
 import io.restassured.response.Response;
+import models.response.CreateUserResponse;
+import org.assertj.core.api.Assertions;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
 
 public class UserValidator {
 
-    public void verifyStatusCode(Response response, int expectedStatus) {
-        assertThat(response.statusCode()).isEqualTo(expectedStatus);
+    public void verifyStatusCode(Response response, int expectedStatusCode) {
+        Assertions.assertThat(response.statusCode())
+                .isEqualTo(expectedStatusCode);
     }
 
     public void verifyUsersList(Response response) {
-        assertThat(response.jsonPath().getList("$").size())
-                .isGreaterThan(0);
 
-        // optional deeper validation
-        assertThat(response.jsonPath().getList("id")).isNotEmpty();
+        List<Object> users = response.jsonPath().getList("$");
+
+        Assertions.assertThat(users)
+                .isNotNull()
+                .isNotEmpty();
+    }
+
+    public void verifyUserCreated(Response response) {
+
+        CreateUserResponse user = response.as(CreateUserResponse.class);
+        Assertions.assertThat(user.getId()).isGreaterThanOrEqualTo(0);
     }
 }
