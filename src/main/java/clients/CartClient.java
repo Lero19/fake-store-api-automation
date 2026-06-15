@@ -22,10 +22,16 @@ public class CartClient extends BaseApiClient {
 
     public Response createCart(CreateCartRequest request) {
 
-        return requestSpec()
+        logger.info("Sending POST request to create cart...");
+        logger.info("Request Body: {}", request);
+
+        Response response = requestSpec()
                 .body(request)
                 .when()
                 .post("/carts");
+
+        logger.info("Response Status: {}", response.statusCode());
+        return response;
     }
     public Response updateCart(int id, CreateCartRequest request) {
 

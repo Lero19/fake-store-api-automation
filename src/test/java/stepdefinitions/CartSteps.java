@@ -3,7 +3,10 @@ package stepdefinitions;
 import context.ScenarioContext;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.qameta.allure.Allure;
+import io.restassured.response.Response;
 import services.CartService;
+import utils.AllureUtils;
 import validators.CartValidator;
 
 public class CartSteps {
@@ -31,13 +34,18 @@ public class CartSteps {
     public void verifyCart(int id) {
         validator.verifySingleCart(context.getResponse(), id);
     }
+
     @When("I create a new cart")
     public void createCart() {
-        context.setResponse(cartService.createCart());
+        Allure.step("Creating a new cart");
+        Response response = cartService.createCart();
+        context.setResponse(response);
+        AllureUtils.attachResponse(response);
     }
 
     @Then("cart should be created successfully")
     public void verifyCartCreated() {
+        Allure.step("Validating cart creation response");
         validator.verifyCartCreated(context.getResponse());
     }
     @When("I update cart with id {int}")
