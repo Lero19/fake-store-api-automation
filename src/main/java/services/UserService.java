@@ -20,4 +20,10 @@ public class UserService {
     public Response getUserById(int id) {
         return userClient.getUserById(id);
     }
+    public Response updateUser(int id, String username, String email, String password) {
+
+        CreateUserRequest request = new CreateUserRequest(username, email, password);
+        return userClient.updateUser(id, request);
+    }
+
 }

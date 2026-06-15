@@ -53,4 +53,22 @@ public class UserSteps {
     public void verifySingleUser(int id) {
         validator.verifySingleUser(context.getResponse(), id);
     }
+
+    @When("I update user with id {int}")
+    public void updateUser(int id) {
+
+        context.setResponse(
+                userService.updateUser(
+                        id,
+                        "updatedUser",
+                        "updated@mail.com",
+                        "newPassword123"
+                )
+        );
+    }
+
+    @Then("user should be updated with id {int}")
+    public void verifyUserUpdated(int id) {
+        validator.verifyUserUpdated(context.getResponse());
+    }
 }

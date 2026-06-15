@@ -2,6 +2,7 @@ package validators;
 
 import io.restassured.response.Response;
 import models.response.CreateUserResponse;
+import models.response.UpdateUserResponse;
 import models.response.UserResponse;
 import org.assertj.core.api.Assertions;
 
@@ -34,6 +35,13 @@ public class UserValidator {
         Assertions.assertThat(user.getId()).isEqualTo(expectedId);
         Assertions.assertThat(user.getUsername()).isNotBlank();
         Assertions.assertThat(user.getEmail()).isNotBlank();
+    }
+    public void verifyUserUpdated(Response response) {
+
+        UpdateUserResponse user = response.as(UpdateUserResponse.class);
+
+        Assertions.assertThat(user.getUsername()).isEqualTo("updatedUser");
+        Assertions.assertThat(user.getEmail()).isEqualTo("updated@mail.com");
     }
 
 }

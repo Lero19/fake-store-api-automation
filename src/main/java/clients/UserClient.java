@@ -25,4 +25,12 @@ public class UserClient extends BaseApiClient {
                 .when()
                 .get("/users/{id}");
     }
+    public Response updateUser(int id, CreateUserRequest request) {
+
+        return requestSpec()
+                .pathParam("id", id)
+                .body(request)
+                .when()
+                .put("/users/{id}");
+    }
 }

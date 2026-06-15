@@ -12,11 +12,9 @@ public class UserResponse {
     public int getId() {
         return id;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String getUsername() {
         return username;
     }
