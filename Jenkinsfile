@@ -1,1 +1,24 @@
-// Jenkins pipeline placeholder
+pipeline {
+    agent any
+
+    tools {
+        maven 'Maven'
+        jdk 'Java'
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main-dt',
+                    url: 'https://github.com/Lero19/fake-store-api-automation'
+            }
+        }
+
+        stage('Build & Test') {
+            steps {
+                bat 'mvn clean test'
+            }
+        }
+    }
+}
