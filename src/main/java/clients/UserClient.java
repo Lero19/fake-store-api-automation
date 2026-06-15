@@ -33,4 +33,11 @@ public class UserClient extends BaseApiClient {
                 .when()
                 .put("/users/{id}");
     }
+    public Response deleteUser(int id) {
+
+        return requestSpec()
+                .pathParam("id", id)
+                .when()
+                .delete("/users/{id}");
+    }
 }

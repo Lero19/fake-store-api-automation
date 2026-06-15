@@ -43,5 +43,10 @@ public class UserValidator {
         Assertions.assertThat(user.getUsername()).isEqualTo("updatedUser");
         Assertions.assertThat(user.getEmail()).isEqualTo("updated@mail.com");
     }
+    public void verifyUserDeleted(Response response) {
+
+        Assertions.assertThat(response.statusCode()).isEqualTo(200);
+        Assertions.assertThat(response.time()).isLessThan(3000);
+    }
 
 }

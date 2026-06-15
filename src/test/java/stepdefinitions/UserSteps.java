@@ -71,4 +71,13 @@ public class UserSteps {
     public void verifyUserUpdated(int id) {
         validator.verifyUserUpdated(context.getResponse());
     }
+    @When("I delete user with id {int}")
+    public void deleteUser(int id) {
+        context.setResponse(userService.deleteUser(id));
+    }
+
+    @Then("user should be deleted successfully")
+    public void verifyUserDeleted() {
+        validator.verifyUserDeleted(context.getResponse());
+    }
 }

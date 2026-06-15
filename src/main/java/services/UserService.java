@@ -25,5 +25,8 @@ public class UserService {
         CreateUserRequest request = new CreateUserRequest(username, email, password);
         return userClient.updateUser(id, request);
     }
+    public Response deleteUser(int id) {
+        return userClient.deleteUser(id);
+    }
 
 }
