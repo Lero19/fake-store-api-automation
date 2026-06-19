@@ -1,68 +1,35 @@
 package services;
 
 import clients.CartClient;
-import config.ConfigReader;
 import io.restassured.response.Response;
 import models.request.CreateCartRequest;
-import utils.AllureUtils;
 import utils.FileUtils;
 
 import java.util.List;
-
-import static io.restassured.RestAssured.given;
 
 public class CartService {
 
     private final CartClient cartClient = new CartClient();
 
+    // GET ALL CARTS
     public Response getAllCarts() {
-
-        AllureUtils.attachRequest("GET /carts");
-
-        Response response = given()
-                .baseUri(ConfigReader.getBaseUrl())
-                .when()
-                .get("/carts");
-
-        AllureUtils.attachResponse(response);
-        AllureUtils.attachStatusCode(response);
-
-        return response;
+        return cartClient.getAllCarts();
     }
 
+    // GET CART BY ID
     public Response getCartById(int id) {
-
-        AllureUtils.attachRequest("GET /carts/" + id);
-
-        Response response = given()
-                .baseUri(ConfigReader.getBaseUrl())
-                .when()
-                .get("/carts/" + id);
-
-        AllureUtils.attachResponse(response);
-        AllureUtils.attachStatusCode(response);
-
-        return response;
+        return cartClient.getCartById(id);
     }
 
+    // CREATE CART
     public Response createCart() {
 
         String payload = FileUtils.readFile("src/main/resources/payloads.cartManagement/createCart.json");
 
-        AllureUtils.attachRequest(payload);
-
-        Response response = given()
-                .baseUri(ConfigReader.getBaseUrl())
-                .header("Content-Type", "application/json")
-                .body(payload)
-                .when()
-                .post("/carts");
-
-        AllureUtils.attachResponse(response);
-        AllureUtils.attachStatusCode(response);
-
-        return response;
+        return cartClient.createCart(payload);
     }
+
+    // UPDATE CART
     public Response updateCart(int id) {
 
         List<CreateCartRequest.Product> products = List.of(
@@ -76,33 +43,12 @@ public class CartService {
                 products
         );
 
-        AllureUtils.attachRequest(request);
-
-        Response response = given()
-                .baseUri(ConfigReader.getBaseUrl())
-                .header("Content-Type", "application/json")
-                .body(request)
-                .when()
-                .put("/carts/" + id);
-
-        AllureUtils.attachResponse(response);
-        AllureUtils.attachStatusCode(response);
-
-        return response;
+        return cartClient.updateCart(id, request);
     }
+
+    // DELETE CART
     public Response deleteCart(int id) {
-
-        AllureUtils.attachRequest("DELETE /carts/" + id);
-
-        Response response = given()
-                .baseUri(ConfigReader.getBaseUrl())
-                .when()
-                .delete("/carts/" + id);
-
-        AllureUtils.attachResponse(response);
-        AllureUtils.attachStatusCode(response);
-
-        return response;
+        return cartClient.deleteCart(id);
     }
 }
 

@@ -1,51 +1,95 @@
 package clients;
 
+import config.ConfigReader;
 import io.restassured.response.Response;
 import models.request.CreateCartRequest;
+import utils.AllureUtils;
 
-public class CartClient extends BaseApiClient {
+import static io.restassured.RestAssured.given;
 
+public class CartClient {
+
+    // GET ALL CARTS
     public Response getAllCarts() {
 
-        return requestSpec()
+        AllureUtils.attachRequest("GET /carts");
+
+        Response response = given()
+                .baseUri(ConfigReader.getBaseUrl())
                 .when()
                 .get("/carts");
+
+        AllureUtils.attachResponse(response);
+        AllureUtils.attachStatusCode(response);
+
+        return response;
     }
 
+    // GET CART BY ID
     public Response getCartById(int id) {
 
-        return requestSpec()
-                .pathParam("id", id)
+        AllureUtils.attachRequest("GET /carts/" + id);
+
+        Response response = given()
+                .baseUri(ConfigReader.getBaseUrl())
                 .when()
-                .get("/carts/{id}");
+                .get("/carts/" + id);
+
+        AllureUtils.attachResponse(response);
+        AllureUtils.attachStatusCode(response);
+
+        return response;
     }
 
-    public Response createCart(CreateCartRequest request) {
+    // CREATE CART
+    public Response createCart(String payload) {
 
-        logger.info("Sending POST request to create cart...");
-        logger.info("Request Body: {}", request);
+        AllureUtils.attachRequest(payload);
 
-        Response response = requestSpec()
-                .body(request)
+        Response response = given()
+                .baseUri(ConfigReader.getBaseUrl())
+                .header("Content-Type", "application/json")
+                .body(payload)
                 .when()
                 .post("/carts");
 
-        logger.info("Response Status: {}", response.statusCode());
+        AllureUtils.attachResponse(response);
+        AllureUtils.attachStatusCode(response);
+
         return response;
     }
+
+    // UPDATE CART
     public Response updateCart(int id, CreateCartRequest request) {
 
-        return requestSpec()
-                .pathParam("id", id)
+        AllureUtils.attachRequest(request);
+
+        Response response = given()
+                .baseUri(ConfigReader.getBaseUrl())
+                .header("Content-Type", "application/json")
                 .body(request)
                 .when()
-                .put("/carts/{id}");
+                .put("/carts/" + id);
+
+        AllureUtils.attachResponse(response);
+        AllureUtils.attachStatusCode(response);
+
+        return response;
     }
+
+    // DELETE CART
     public Response deleteCart(int id) {
 
-        return requestSpec()
-                .pathParam("id", id)
+        AllureUtils.attachRequest("DELETE /carts/" + id);
+
+        Response response = given()
+                .baseUri(ConfigReader.getBaseUrl())
                 .when()
-                .delete("/carts/{id}");
+                .delete("/carts/" + id);
+
+        AllureUtils.attachResponse(response);
+        AllureUtils.attachStatusCode(response);
+
+        return response;
     }
 }

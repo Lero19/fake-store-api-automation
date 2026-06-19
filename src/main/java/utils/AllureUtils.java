@@ -14,7 +14,15 @@ public class AllureUtils {
     }
 
     public static void attachRequest(Object request) {
+
         try {
+            // If it's already a JSON string → attach directly
+            if (request instanceof String) {
+                Allure.addAttachment("Request Body", (String) request);
+                return;
+            }
+
+            // If it's an object → convert to pretty JSON
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper
                     .writerWithDefaultPrettyPrinter()
