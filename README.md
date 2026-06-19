@@ -216,15 +216,15 @@ This project demonstrates a **production-style API automation framework** that c
 
 ## 👨‍💻 Author
 
-**Nkosingiphile Ncongwane (MCG)**  
+**Nkosingiphile Ncongwane**  
 QA Automation Engineer
 
 ---
 
 ## 📣 Connect With Me
 
-- 💼 LinkedIn: [Add your profile link]
-- 💻 GitHub: [Add your repo link]
+- 💼 LinkedIn: www.linkedin.com/in/nkosingiphile-ncongwane-b9574429a
+- 💻 GitHub: https://github.com/Lero19/fake-store-api-automation
 
 ---
 
