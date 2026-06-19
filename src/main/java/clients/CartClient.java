@@ -77,7 +77,7 @@ public class CartClient {
         return response;
     }
 
-    // DELETE CART
+    // DELETE CART BY ID
     public Response deleteCart(int id) {
 
         AllureUtils.attachRequest("DELETE /carts/" + id);
