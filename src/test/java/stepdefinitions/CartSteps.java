@@ -17,14 +17,18 @@ public class CartSteps {
 
     @When("I request all carts")
     public void getAllCarts() {
-        context.setResponse(cartService.getAllCarts());
+        Allure.step("Requesting all carts");
+        Response response = cartService.getAllCarts();
+        context.setResponse(response);
+        AllureUtils.attachResponse(response);
     }
 
     @When("I request cart with id {int}")
     public void getCartById(int id) {
-        context.setResponse(cartService.getCartById(id));
+        Response response = cartService.getCartById(id);
+        context.setResponse(response);
+        AllureUtils.attachResponse(response);
     }
-
     @Then("response should contain list of carts")
     public void verifyAllCarts() {
         validator.verifyAllCarts(context.getResponse());
@@ -51,16 +55,22 @@ public class CartSteps {
     }
     @When("I update cart with id {int}")
     public void updateCart(int id) {
-        context.setResponse(cartService.updateCart(id));
+        Response response = cartService.updateCart(id);
+        context.setResponse(response);
+        AllureUtils.attachResponse(response);
     }
 
     @Then("cart should be updated successfully")
     public void verifyCartUpdated() {
         validator.verifyCartUpdated(context.getResponse());
     }
+
     @When("I delete cart with id {int}")
     public void deleteCart(int id) {
-        context.setResponse(cartService.deleteCart(id));
+        Allure.step("Deleting cart with id: " + id);
+        Response response = cartService.deleteCart(id);
+        context.setResponse(response);
+        AllureUtils.attachResponse(response);
     }
 
     @Then("cart should be deleted successfully")

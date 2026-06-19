@@ -19,12 +19,8 @@ public class AuthSteps {
 
     @When("I login with valid credentials")
     public void login() {
-
         context.setResponse(
-                authService.login(
-                        "johnd",
-                        "m38rmF$"
-                )
+                authService.login()
         );
     }
 
