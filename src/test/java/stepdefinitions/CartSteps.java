@@ -11,16 +11,9 @@ import validators.CartValidator;
 
 public class CartSteps {
 
-    //private final ScenarioContext context = new ScenarioContext();
-    private final ScenarioContext context;
+    private final ScenarioContext context = new ScenarioContext();
     private final CartService cartService = new CartService();
     private final CartValidator validator = new CartValidator();
-
-
-    public CartSteps(ScenarioContext context) {
-        this.context = context;
-    }
-
 
     @When("I request all carts")
     public void getAllCarts() {
