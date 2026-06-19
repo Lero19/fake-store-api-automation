@@ -1,5 +1,6 @@
 package utils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Allure;
 import io.restassured.response.Response;
 
@@ -12,12 +13,18 @@ public class AllureUtils {
         );
     }
 
-    public static void attachRequest(String requestBody) {
+    public static void attachRequest(Object request) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            String json = mapper
+                    .writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(request);
 
-        Allure.addAttachment(
-                "Request Body",
-                requestBody
-        );
+            Allure.addAttachment("Request Body", json);
+
+        } catch (Exception e) {
+            Allure.addAttachment("Request Body", request.toString());
+        }
     }
 
     public static void attachStatusCode(Response response) {
