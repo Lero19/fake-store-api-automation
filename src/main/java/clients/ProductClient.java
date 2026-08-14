@@ -22,6 +22,7 @@ public class ProductClient extends BaseApiClient {
                 .when()
                 .post("/products");
     }
+    //Test
 
     public Response updateProduct(int id, CreateProductRequest request) {
         return requestSpec()
